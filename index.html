@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Us :3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Pacifico&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rose:    #f9a8b8;
+            --deep:    #e05c7a;
+            --blush:   #fde8ed;
+            --cream:   #fff8f9;
+            --soft:    #fcd5de;
+            --text:    #4a2030;
+            --shadow:  rgba(224,92,122,0.18);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--blush);
+            font-family: 'Nunito', sans-serif;
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ── floating hearts bg ── */
+        .hearts-bg {
+            position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+        }
+        .hb { position: absolute; opacity: 0; font-size: 1.2rem; animation: floatHeart 8s linear infinite; }
+        @keyframes floatHeart {
+            0%   { opacity: 0; transform: translateY(0) scale(0.8); }
+            10%  { opacity: 0.35; }
+            90%  { opacity: 0.2; }
+            100% { opacity: 0; transform: translateY(-100vh) scale(1.2) rotate(20deg); }
+        }
+
+        /* ── page wrapper ── */
+        .page { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 40px 24px 160px; text-align: center; }
+
+        /* ── header ── */
+        header { margin-bottom: 48px; }
+        .main-title {
+            font-family: 'Pacifico', cursive;
+            font-size: clamp(2.8rem, 8vw, 5rem);
+            color: var(--deep);
+            text-shadow: 0 4px 18px rgba(224,92,122,0.22);
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+        .main-title span { color: var(--rose); }
+        .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic; font-size: 1.2rem;
+            color: var(--deep); opacity: 0.75; margin-top: 6px;
+        }
+
+        /* ── countdown card ── */
+        .countdown-card {
+            background: #fff;
+            border: 2px solid var(--soft);
+            border-radius: 28px;
+            padding: 26px 36px;
+            display: inline-block;
+            box-shadow: 0 8px 36px var(--shadow);
+            margin: 24px auto 0;
+        }
+        #timer-label {
+            font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--rose); font-weight: 600; margin-bottom: 8px;
+        }
+        #countdown-display {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 300; color: var(--deep); letter-spacing: 3px;
+        }
+
+        /* ── photos ── */
+        .photos-section { margin: 56px 0 16px; }
+        .photos-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic; font-size: 1.05rem;
+            color: var(--deep); opacity: 0.7; margin-bottom: 20px;
+        }
+        .photo-row { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+        .photo-frame {
+            position: relative; width: 210px; height: 210px;
+            border-radius: 18px; overflow: hidden;
+            box-shadow: 0 12px 36px var(--shadow);
+            border: 5px solid #fff;
+            transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s;
+            cursor: pointer;
+        }
+        .photo-frame:hover { transform: rotate(-3deg) scale(1.07); box-shadow: 0 20px 48px var(--shadow); }
+        .photo-frame:nth-child(even):hover { transform: rotate(3deg) scale(1.07); }
+        .photo-frame img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+        }
+        .photo-placeholder {
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--soft), var(--rose));
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: #fff; font-size: 2.2rem; gap: 6px;
+        }
+        .photo-placeholder span { font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.8; font-family: 'Nunito'; font-weight: 600; }
+
+        /* ── album link ── */
+        .album-link-wrap { margin: 40px 0; }
+        .album-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: linear-gradient(135deg, var(--deep), #c94470);
+            color: #fff; text-decoration: none;
+            font-family: 'Pacifico', cursive; font-size: 1.1rem;
+            padding: 16px 36px; border-radius: 50px;
+            box-shadow: 0 8px 30px var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            letter-spacing: 0.5px;
+        }
+        .album-btn:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 14px 40px var(--shadow); }
+        .album-btn .icon { font-size: 1.4rem; }
+
+        /* ── envelope ── */
+        .envelope-section { margin: 56px auto; }
+        .section-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic; font-size: 1.05rem;
+            color: var(--deep); opacity: 0.7; margin-bottom: 28px;
+        }
+        .envelope-wrapper { position: relative; width: 320px; height: 220px; margin: 0 auto; perspective: 1000px; }
+        .envelope {
+            position: relative; width: 100%; height: 100%;
+            background: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 10px 40px var(--shadow);
+            transition: box-shadow 0.4s;
+        }
+        .envelope:hover:not(.disabled) { box-shadow: 0 18px 56px var(--shadow); }
+        .flap {
+            position: absolute; top: 0; width: 0; height: 0;
+            border-left: 160px solid transparent;
+            border-right: 160px solid transparent;
+            border-top: 120px solid var(--rose);
+            transform-origin: top; z-index: 3;
+            transition: transform 0.65s cubic-bezier(0.4,0,0.2,1);
+            filter: drop-shadow(0 4px 8px var(--shadow));
+        }
+        .env-front {
+            position: absolute; bottom: 0; width: 100%; height: 100%;
+            background: var(--rose); z-index: 2;
+            clip-path: polygon(0 0, 160px 110px, 320px 0, 320px 220px, 0 220px);
+        }
+        .heart-seal {
+            position: absolute; top: 45%; left: 50%;
+            transform: translate(-50%,-50%);
+            font-size: 2.8rem; z-index: 4;
+            animation: pulse 1.6s ease-in-out infinite;
+            transition: opacity 0.3s;
+        }
+        @keyframes pulse {
+            0%,100% { transform: translate(-50%,-50%) scale(1); }
+            50%      { transform: translate(-50%,-50%) scale(1.18); }
+        }
+        .letter-preview {
+            position: absolute; top: 10%; left: 5%; width: 90%; height: 80%;
+            background: var(--cream); z-index: 1;
+            transition: transform 0.65s cubic-bezier(0.4,0,0.2,1);
+            border-radius: 4px;
+            padding: 18px 12px;
+        }
+        .lines { height: 2px; background: var(--soft); width: 80%; margin: 14px auto; border-radius: 2px; }
+        .envelope.open .flap   { transform: rotateX(180deg); }
+        .envelope.open .heart-seal { opacity: 0; pointer-events: none; }
+        .envelope.open .letter-preview { transform: translateY(-70px); }
+        .envelope.disabled { cursor: not-allowed; opacity: 0.7; }
+        .lock-hint {
+            margin-top: 14px;
+            font-size: 0.8rem; color: var(--deep); opacity: 0.6; letter-spacing: 1px;
+        }
+
+        /* ── modal ── */
+        .letter-modal {
+            display: none; position: fixed; inset: 0;
+            background: rgba(74,32,48,0.45);
+            z-index: 1000; justify-content: center; align-items: center;
+            backdrop-filter: blur(8px);
+        }
+        .modal-content {
+            background: var(--cream);
+            padding: 52px 48px;
+            border-radius: 24px;
+            width: 90%; max-width: 580px;
+            position: relative;
+            box-shadow: 0 28px 80px rgba(74,32,48,0.25);
+            border: 2px solid var(--soft);
+            animation: modalIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        @keyframes modalIn { from { opacity:0; transform: scale(0.88) translateY(20px); } to { opacity:1; transform: scale(1); } }
+        .close-modal {
+            position: absolute; top: 18px; right: 22px;
+            font-size: 2rem; cursor: pointer;
+            color: var(--rose); line-height: 1;
+            transition: color 0.2s, transform 0.2s;
+        }
+        .close-modal:hover { color: var(--deep); transform: rotate(10deg) scale(1.1); }
+        .modal-content h2 {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.7rem; color: var(--deep);
+            margin-bottom: 18px;
+        }
+        #secret-message {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.18rem; line-height: 1.9;
+            color: var(--text);
+        }
+        .signature {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.5rem; color: var(--deep);
+            text-align: right; margin-top: 30px;
+        }
+
+        /* ── spotify ── */
+        .music-section { margin: 56px 0 0; }
+        .spotify-wrap {
+            background: #fff; border-radius: 20px;
+            padding: 24px; box-shadow: 0 8px 32px var(--shadow);
+            border: 2px solid var(--soft);
+        }
+        .spotify-wrap iframe { border-radius: 12px; display: block; }
+        .spot-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic; font-size: 1.05rem;
+            color: var(--deep); opacity: 0.7; margin-bottom: 16px;
+        }
+
+        /* ── bottom spacer ── */
+        .spacer { height: 80px; }
+    </style>
+</head>
+<body>
+
+<!-- floating hearts -->
+<div class="hearts-bg" id="hearts-bg"></div>
+
+<div class="page">
+
+    <!-- header -->
+    <header>
+        <h1 class="main-title">Us <span>:3</span></h1>
+        <p class="subtitle">our little corner of the internet ♡</p>
+        <div class="countdown-card">
+            <div id="timer-label">counting down to...</div>
+            <div id="countdown-display">00d 00h 00m 00s</div>
+        </div>
+    </header>
+
+    <!-- photos -->
+<section class="photos-section">
+    <p class="photos-label">BLEEE ♡</p>
+    <div class="photo-row">
+        
+        <!-- First Photo Frame -->
+        <div class="photo-frame">
+            <img src="pic1.jpeg" alt="Description of photo" class="photo-img">
+        </div>
+
+        <!-- Second Photo Frame (Placeholder) -->
+        <div class="photo-frame">
+            <img src="photo1.png" alt="Description of photo" class="photo-img">
+        </div>
+    </div>
+</section>
+
+    <!-- album link -->
+    <div class="album-link-wrap">
+        <a href="album.html" class="album-btn">
+            <span class="icon">📖</span> our photo album
+        </a>
+    </div>
+
+    <!-- envelope -->
+    <section class="envelope-section">
+        <p class="section-label">a little letter for you ♡</p>
+        <div class="envelope-wrapper">
+            <div class="envelope" id="envelope">
+                <div class="flap"></div>
+                <div class="env-front"></div>
+                <div class="heart-seal" id="seal">💌</div>
+                <div class="letter-preview">
+                    <div class="lines"></div>
+                    <div class="lines"></div>
+                    <div class="lines"></div>
+                </div>
+            </div>
+        </div>
+        <p class="lock-hint" id="lock-hint"></p>
+    </section>
+
+    <!-- letter modal -->
+    <div class="letter-modal" id="letter-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-letter">×</span>
+            <h2>My Dearest,</h2>
+            <p id="secret-message"></p>
+            <p class="signature">Forever yours, <br><span id="sig-name"></span></p>
+        </div>
+    </div>
+
+    <!-- spotify -->
+    <section class="music-section">
+        <p class="spot-label">our playlist ♡</p>
+        <div class="spotify-wrap">
+            <iframe
+                src="https://open.spotify.com/embed/playlist/75Ui1gS1bwCqrUpW0JtLRP?utm_source=generator"
+                width="100%" height="352" frameBorder="0"
+                allowfullscreen
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <div class="spacer"></div>
+</div>
+
+<script>
+const CONFIG = {
+    targetDate: "may 14, 2026 20:00:00 GMT",   // ← change countdown target
+    message:    "5 MONTH ALR🥹🥹 HEHEH it feels so much longer and shorter at the same time its like iv known u for my whole life but it also feels like it beginning of something great :3 I KNOW we will meet and live together someday and i hope that this day comes faster but for now i want u to know that i enjoy every last second i get to spend with u, watching animes or playing together its so much fun as long as its with u :3 i love uuuuuu MUWAHHH",
+    yourName:   "Chris"
+};
+
+// floating hearts
+(function spawnHearts() {
+    const bg = document.getElementById('hearts-bg');
+    const emojis = ['♡','💗','💕','💖','🌸','✨'];
+    for (let i = 0; i < 18; i++) {
+        const h = document.createElement('span');
+        h.className = 'hb';
+        h.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+        h.style.left   = Math.random()*100 + 'vw';
+        h.style.bottom = '-5vh';
+        h.style.animationDelay    = Math.random()*8 + 's';
+        h.style.animationDuration = (6+Math.random()*6) + 's';
+        h.style.fontSize = (0.8+Math.random()*1.2) + 'rem';
+        bg.appendChild(h);
+    }
+})();
+
+function updateTimer() {
+    const now    = Date.now();
+    const target = new Date(CONFIG.targetDate).getTime();
+    const diff   = target - now;
+
+    const countEl = document.getElementById('countdown-display');
+    const labelEl = document.getElementById('timer-label');
+    const hint    = document.getElementById('lock-hint');
+    const env     = document.getElementById('envelope');
+
+    if (diff <= 0) {
+        labelEl.innerText = "it's time!! 🎉";
+        countEl.innerText = "open it!! 💌";
+        env.classList.remove('disabled');
+        if (hint) hint.innerText = '';
+        return;
+    }
+
+    env.classList.add('disabled');
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000)  / 60000);
+    const s = Math.floor((diff % 60000)    / 1000);
+    countEl.innerText = `${d}d ${h}h ${m}m ${s}s`;
+    if (hint) hint.innerText = '🔒 the letter unlocks when the timer hits zero';
+}
+
+function init() {
+    document.getElementById('sig-name').innerText = CONFIG.yourName;
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    const envelope = document.getElementById('envelope');
+    const modal    = document.getElementById('letter-modal');
+    const closeBtn = document.getElementById('close-letter');
+
+    envelope.onclick = () => {
+        if (envelope.classList.contains('disabled')) return;
+        envelope.classList.add('open');
+        setTimeout(() => {
+            document.getElementById('secret-message').innerText = CONFIG.message;
+            modal.style.display = 'flex';
+        }, 820);
+    };
+
+    const closeAll = () => {
+        modal.style.display = 'none';
+        envelope.classList.remove('open');
+    };
+
+    closeBtn.onclick = closeAll;
+    window.onclick = e => { if (e.target === modal) closeAll(); };
+}
+
+window.onload = init;
+</script>
+</body>
+</html>
